@@ -1,22 +1,26 @@
 class Public::CustomersController < ApplicationController
   def show
-    @customer = current_customer.id
-    # @customers = @customer.customer
+    @customer = current_customer
   end
 
   def edit
+    @customer = current_customer
   end
 
   def update
-    @customer = Customer.where(id: params[:format])
+    @customer = current_customer
     @customer.update(customer_params)
-    redirect_to root_path
+    redirect_to public_customers_mypage_path
   end
 
   def withdrawal
   end
 
   def withdraw
+    @customer = current_customer
+    @customer.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
   end
 end
 

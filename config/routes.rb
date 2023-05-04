@@ -8,17 +8,22 @@ Rails.application.routes.draw do
     root to: 'public/homes#top'
     get '/about' => 'public/homes#about'
     namespace :public do
-      get 'orders/info'
+      post 'orders/info'
       get 'orders/complete'
-      get 'cart_items/all_destroy'
-      get 'customers/withdrawal'
-      get 'customers/withdraw'
+      post 'orders/create'
+      resources :orders, only: [:new, :index, :show]
+
+      post 'cart_items/create'
+      delete 'cart_items/all_destroy'
+      resources :cart_items, only: [:index, :update, :destroy]
+
+      get 'customers/withdrawal' => 'customers#withdrawal'
+      patch 'customers/withdraw' => 'customers#withdraw'
       get 'customers/mypage' => 'customers#show'
       get 'customers/edit'
-      get 'custmers/update'
-      resources :orders,     only: [:new, :create, :index, :show]
-      resources :cart_items, only: [:index, :update, :destroy, :create]
-      resources :items,      only: [:index, :show]
+      patch 'customers/update' => 'customers#update'
+
+      resources :items, only: [:index, :show]
     end
 
 
@@ -29,17 +34,17 @@ Rails.application.routes.draw do
   }
   namespace :admin do
     get '/' => 'homes#top'
-    get 'orders/show'
+    get 'orders/show/:id' => 'orders#show'
     get 'customers/index'
     get 'customers/show'
     get 'customers/edit'
-    get 'customers/update'
+    patch 'customers/update/:id' => 'customers#update'
     get 'items/index'
     get 'items/new'
-    get 'items/create'
-    get 'items/show'
-    get 'items/edit'
-    get 'items/update'
+    post 'items/create'
+    get 'items/show/:id' => 'items#show', as: 'items_show'
+    get 'items/edit/:id' => 'items#edit', as: 'items_edit'
+    patch 'items/update/:id' => 'items#update'
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

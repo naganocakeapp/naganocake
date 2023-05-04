@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-8 offset-md-1 mt-3 px-5">
       <p>会員情報編集</p>
-      <%= form_with model: @customers do |f| %>
+      <%= form_with model: @customer,url: public_customers_update_path do |f| %>
       <table>
         <tr>
           <td>
@@ -71,18 +71,17 @@
         <tr>
           <td> </td>
           <td>
-            <%= link_to public_customers_mypage_path do %>
-            <button class="btn btn-success">
-              編集内容を保存
-            </button>
-            <% end %>
+            <div class="form_group">
+              <%= f.submit "編集内容を保存", class: "btn btn-success" %>
+            </div>
           </td>
 
           <td>
-            <!--= link_to public_customers_withdrawal_path(current_customer), method: :delete do %>-->
+            <%= link_to public_customers_withdrawal_path do %>
             <button class="btn btn-danger">
               退会する
             </button>
+            <% end %>
           </td>
         </tr>
       </table>
