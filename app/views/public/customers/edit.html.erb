@@ -1,0 +1,92 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-1 mt-3 px-5">
+      <p>会員情報編集</p>
+      <%= form_with model: @customers do |f| %>
+      <table>
+        <tr>
+          <td>
+            氏名
+          </td>
+          <td>
+            <%= f.text_field :first_name, :placeholder => "#{current_customer.first_name}" %>
+          </td>
+          <td>
+            <%= f.text_field :last_name, :placeholder => "#{current_customer.last_name}" %>
+          </td>
+          <td> </td>
+        </tr>
+
+        <tr>
+          <td>
+            フリガナ
+          </td>
+          <td>
+            <%= f.text_field :first_name_kana, :placeholder => "#{current_customer.first_name_kana}" %>
+          </td>
+          <td>
+            <%= f.text_field :last_name_kana, :placeholder => "#{current_customer.last_name_kana}" %>
+          </td>
+          <td> </td>
+        </tr>
+
+        <tr>
+          <td>
+            郵便番号
+          </td>
+          <td>
+            <%= f.text_field :postal_code, :placeholder => "#{current_customer.postal_code}" %>
+          </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+
+        <tr>
+          <td>
+            住所
+          </td>
+          <td colspan="3">
+            <%= f.text_field :address, size: 45, :placeholder => "#{current_customer.address}" %>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            電話番号
+          </td>
+          <td>
+            <%= f.text_field :telephone_number, :placeholder => "#{current_customer.telephone_number}" %>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            メールアドレス
+          </td>
+          <td>
+            <%= f.text_field :email, :placeholder => "#{current_customer.email}" %>
+          </td>
+        </tr>
+
+        <tr>
+          <td> </td>
+          <td>
+            <%= link_to public_customers_mypage_path do %>
+            <button class="btn btn-success">
+              編集内容を保存
+            </button>
+            <% end %>
+          </td>
+
+          <td>
+            <!--= link_to public_customers_withdrawal_path(current_customer), method: :delete do %>-->
+            <button class="btn btn-danger">
+              退会する
+            </button>
+          </td>
+        </tr>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>

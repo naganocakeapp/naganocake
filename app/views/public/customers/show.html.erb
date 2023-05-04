@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-1 mt-3 px-5">
+      <p>マイページ</p>
+
+      <p>
+        <b>登録情報</b>
+        <%= link_to public_customers_edit_path do %>
+        <buttun class="btn btn-success">
+          編集する
+        </buttun>
+        <% end %>
+      </p>
+
+      <%= @customer.each do |customer| %>
+      <table class="table", border="3">
+        <tr>
+          <td>
+              氏名
+          </td>
+          <td>
+              <%= customer.last_name %>　<%= customer.first_name %>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+              カナ
+          </td>
+          <td>
+            <%= customer.last_name_kana %>　<%= customer.first_name_kana %>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+              郵便番号
+          </td>
+          <td>
+            <%= customer.postal_code %>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+              住所
+          </td>
+          <td>
+            <%= customer.address %>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+              電話番号
+          </td>
+          <td>
+            <%= customer.telephone_number %>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            メールアドレス
+          </td>
+          <td>
+            <%= customer.email %>
+          </td>
+        </tr>
+      </table>
+      <% end %>
+
+      <p>
+        <b>注文履歴</b>
+        <%= link_to public_orders_path(current_customer.id) do %>
+        <button class="btn btn-info">
+        一覧を見る
+        </button>
+        <% end %>
+      </p>
+
+    </div>
+  </div>
+</div>

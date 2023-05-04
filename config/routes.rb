@@ -7,6 +7,20 @@ Rails.application.routes.draw do
   }
     root to: 'public/homes#top'
     get '/about' => 'public/homes#about'
+    namespace :public do
+      get 'orders/info'
+      get 'orders/complete'
+      get 'cart_items/all_destroy'
+      get 'customers/withdrawal'
+      get 'customers/withdraw'
+      get 'customers/mypage' => 'customers#show'
+      get 'customers/edit'
+      get 'custmers/update'
+      resources :orders,     only: [:new, :create, :index, :show]
+      resources :cart_items, only: [:index, :update, :destroy, :create]
+      resources :items,      only: [:index, :show]
+    end
+
 
   # 管理者用
   # URL /admin/sign_in ...
@@ -15,6 +29,17 @@ Rails.application.routes.draw do
   }
   namespace :admin do
     get '/' => 'homes#top'
+    get 'orders/show'
+    get 'customers/index'
+    get 'customers/show'
+    get 'customers/edit'
+    get 'customers/update'
+    get 'items/index'
+    get 'items/new'
+    get 'items/create'
+    get 'items/show'
+    get 'items/edit'
+    get 'items/update'
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
