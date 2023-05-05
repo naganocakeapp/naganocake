@@ -38,13 +38,13 @@ Rails.application.routes.draw do
     get 'customers/index'
     get 'customers/show'
     get 'customers/edit'
-    patch 'customers/update/:id' => 'customers#update'
+    patch 'customers/update/:id' => 'customers#update', as: 'customers_update'
     get 'items/index'
     get 'items/new'
     post 'items/create'
     get 'items/show/:id' => 'items#show', as: 'items_show'
     get 'items/edit/:id' => 'items#edit', as: 'items_edit'
-    patch 'items/update/:id' => 'items#update'
+    patch 'items/update/:id' => 'items#update', as: 'items_update'
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

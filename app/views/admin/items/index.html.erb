@@ -2,6 +2,14 @@
   <div class="row">
     <div class="col-md-8 offset-md-1 mt-3 px-5">
       <p>商品一覧</p>
+      <%= link_to admin_items_new_path do %>
+      <div class="text-right">
+        <button class="btn btn-lg">
+          <i class="fa-solid fa-circle-plus"></i>
+        </button>
+      </div>
+      <% end %>
+
       <table class="table">
         <thead>
           <tr bgcolor="#cccccc">
@@ -28,6 +36,9 @@
         </tbody>
         <% end %>
       </table>
+      <div style="text-align:center">
+        <%= paginate @items %>
+      </div>
     </div>
   </div>
 </div>
