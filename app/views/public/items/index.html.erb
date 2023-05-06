@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8 offset-2 mt-3">
+      <h4><b>商品一覧</b>(全<%= @count_item %>件)</h4>
+    </div>
+  <div class="row">
+    <% @item.each do |item| %>
+    <div class="col-3 mx-auto">
+      <table>
+        <tr>
+          <%= link_to public_item_path(item) do %>
+          <%= image_tag item.get_profile_image(100,100) %><br>
+          <% end %>
+        </tr>
+        <tr>
+          <%= item.name %><br>
+        </tr>
+        <tr>
+          <%= item.price %><br>
+        </tr>
+      </table>
+    </div>
+    <% end %>
+  </div>
+  <div class="col-12 mx-auto mt-5">
+     <%= paginate @item %>
+  </div>
+
+  </div>
+</div>

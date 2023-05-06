@@ -1,1 +1,47 @@
-<h1>商品一覧</h1>
+<div class="container">
+  <div class="row mt-5 offset-2">
+    <div class="col-3">
+      <%= image_tag @item.get_profile_image(100,100) %>
+    </div>
+    <div class="col-7 mt-3">
+      <table>
+        <tr>
+          <td colspan="2">
+            <div class="form_group">
+              <b><%= @item.name %></b>
+            </div>
+          </td>
+          <td> </td>
+        </tr>
+
+        <tr>
+          <td colsapn="2">
+            <%= @item.introduction %>
+          </td>
+          <td> </td>
+        </tr>
+
+        <tr>
+          <td>
+            ¥<%= @item.price %>(税込)<br>
+          </td>
+          <td> </td>
+        </tr>
+
+        <tr>
+          <td>
+            <%= form_with model: @cart_item, url: public_cart_items_create_path do |f| %>
+            <%= f.hidden_field :item_id, :value => @item.id %>
+            <%= f.select :amount, *[1..10], include_blank: "個数選択" %>
+            <div class="form_group">
+              <%= f.submit "カートに入れる", class: "btn btn-success" %>
+            </div>
+            <% end %>
+          </td>
+          <td>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
