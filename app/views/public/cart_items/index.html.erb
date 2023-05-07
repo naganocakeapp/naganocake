@@ -3,10 +3,20 @@
     <div class="col-8">
 
       <p>ショッピングカート</p>
+    </div>
+    <div class="col-4 text-right mt-3">
+      <%= link_to public_all_destroy_path, method: :delete, "data-confirm" => "本当に空にしますか？" do %>
+      <button class= "btn btn-danger">
+        カートを空にする
+      </button>
+      <% end %>
+    </div>
+    <div class="col-12">
 
-      <table class="table", border="3">
+
+      <table class="table mt-3", border="3">
         <tr>
-          <th>
+          <th colspan="2">
             商品名
           </th>
           <th>
@@ -24,18 +34,56 @@
         <% @cart_items.each do |cart_item| %>
         <tr>
           <td>
+            <%= image_tag cart_item.item.get_profile_image(50,50) %>
+          </td>
+          <td>
             <%= cart_item.item.name %>
           </td>
           <td>
-            <%= (cart_item.item.with_tax_price %>
+            <%= cart_item.item.with_tax_price %>
           </td>
           <td>
-            <%= (cart_item.subtotal) %>
+            <%= cart_item.amount %>
           </td>
+          <td>
+            <%= cart_item.subtotal %>
+          </td>
+          <td>
+            <% if cart_item.customer_id == current_customer.id %>
+            <%= link_to public_cart_item_destroy_path(cart_item), method: :delete,
+            "data-confirm" => "本当に削除しますか？" do %>
+            <button class="btn btn-danger btn-sm">
+              削除する
+            </button>
+            <% end %>
+            <% end %>
+          </td>
+          <% @total += (cart_item.subtotal) %>
         </tr>
         <% end %>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4 text-left">
+      <%= link_to root_path do %>
+      <button class="btn btn-info">
+        買い物を続ける
+      </button>
+      <% end %>
+    </div>
+
+    <div class="col-4 text-right">
+      <table class="table", border="1">
+        <td>
+          合計金額
+        </td>
+        <td>
+          <%= @total %>
+        </td>
       </table>
 
     </div>
   </div>
+
 </div>
