@@ -16,7 +16,9 @@ Rails.application.routes.draw do
       post 'cart_items/create'
       delete 'cart_items/all_destroy' => 'cart_items#all_destroy', as: 'all_destroy'
       delete 'cart_items/destroy/:id' => 'cart_items#destroy', as: 'cart_item_destroy'
-      resources :cart_items, only: [:index, :update]
+      patch 'cart_items/update/:id' => 'cart_items#update', as: 'cart_item_update'
+
+      resources :cart_items, only: [:index]
 
       get 'customers/withdrawal' => 'customers#withdrawal'
       patch 'customers/withdraw' => 'customers#withdraw'

@@ -2,9 +2,15 @@ class Public::CartItemsController < ApplicationController
   def index
     @cart_items = CartItem.all
     @total = 0
+    @order = Order.new
   end
 
   def update
+    # @item = Item.find_by(item_id: params[:cart_item][:item_id])
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.update(cart_item_params)
+    redirect_to public_cart_items_path
+
   end
 
   def destroy
@@ -20,7 +26,9 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
+    #item_idでカート内に同じitem_idのものを探す
     @cart_item = CartItem.find_by(item_id: params[:cart_item][:item_id])
+    #カートに入れた商品と入っていた商品に同じものがあったら、数量を加算なかったら、商品追加
     if @cart_item
       @cart_item.amount += CartItem.new(cart_item_params).amount.to_i
     else

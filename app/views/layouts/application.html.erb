@@ -21,6 +21,9 @@
           <a class="navbar-brand p-3" href="/">
             naganocake
           </a>
+          <div class="text-light">
+                  <p>ようこそ、<%= current_customer.last_name %>さん！</p>
+          </div>
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                  aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,6 +34,7 @@
             <ul class="navbar-nav ml-auto">
 
               <% if customer_signed_in? %>
+
 
               <li class="nav-item">
                   <%= link_to public_customers_mypage_path, class: 'nav-link text-light' do %>
